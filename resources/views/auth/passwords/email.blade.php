@@ -1,47 +1,41 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
 
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    <form class="form-horizontal" method="POST" action="{{ route('password.email') }}">
-                        {{ csrf_field() }}
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Send Password Reset Link
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+<section class="guest-form">
+    <div class="background" style="background-image: url({{ asset('images/backgrounds/gabinete-herramientas.jpg')  }});"></div>
+    <div class="form-container">
+        @if (session('status'))
+            <div class="notification is-success">
+                {{ session('status') }}
             </div>
-        </div>
+        @endif
+
+        <form class="form" method="POST" action="{{ route('password.email') }}" role="form">
+            {{ csrf_field() }}
+
+            <div class="field{{ $errors->has('email') ? ' has-error' : '' }}">
+                <label for="email" class="label is-small">E-Mail</label>
+
+                <p class="control has-icons-left">
+                    <input id="email" type="email" class="input is-small{{ $errors->has('email') ? ' is-danger' : ' is-primary' }}" name="email" value="{{ old('email') }}" required autofocus>
+                    <span class="icon is-small is-left"><i class="fa fa-at"></i></span>
+
+                    @if($errors->has('email'))
+                        <p class="help is-danger">{{ $errors->first('email') }}</p>
+                    @endif
+                </p>
+            </div>
+
+            <div class="control">
+                <button class="button is-primary is-small is-outlined m-t-10">Enviar correo de recuperación</button>
+            </div>
+
+            <p class="content is-small is-pulled-right m-t-10">
+                <a class="is-muted" href="{{ route('login') }}"><i class="fa fa-fw fa-angle-left"></i> Volver al login</a>
+            </p>
+        </form>
     </div>
-</div>
+</section>
+
 @endsection

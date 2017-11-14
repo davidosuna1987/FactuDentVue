@@ -28,6 +28,7 @@
     }
 
 	.form-container{
+		position: relative;
 		flex: 1;
 		background-color: #fff;
 		display: flex;
@@ -35,6 +36,12 @@
 		padding-top: 100px;
 		min-width: 33.33%;
 		max-width: 400px;
+	}
+
+	.notification{
+		position: absolute;
+	    top: 25px;
+	    width: 80%;
 	}
 
 	.form{

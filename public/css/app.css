@@ -14300,6 +14300,7 @@ a.is-muted:hover {
 }
 
 .guest-form .form-container {
+  position: relative;
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
@@ -14313,6 +14314,12 @@ a.is-muted:hover {
   padding-top: 100px;
   min-width: 33.33%;
   max-width: 400px;
+}
+
+.guest-form .notification {
+  position: absolute;
+  top: 25px;
+  width: 80%;
 }
 
 .guest-form .form {
