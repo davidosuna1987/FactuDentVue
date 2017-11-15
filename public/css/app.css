@@ -14263,7 +14263,98 @@ a.is-muted:hover {
   padding-right: 100px !important;
 }
 
+/**
+ * Width_helpers
+ */
+
+.w-5 {
+  width: 5px !important;
+}
+
+.w-10 {
+  width: 10px !important;
+}
+
+.w-15 {
+  width: 15px !important;
+}
+
+.w-20 {
+  width: 20px !important;
+}
+
+.w-25 {
+  width: 25px !important;
+}
+
+.w-30 {
+  width: 30px !important;
+}
+
+.w-35 {
+  width: 35px !important;
+}
+
+.w-40 {
+  width: 40px !important;
+}
+
+.w-45 {
+  width: 45px !important;
+}
+
+.w-50 {
+  width: 50px !important;
+}
+
+.w-75 {
+  width: 75px !important;
+}
+
+.w-100 {
+  width: 100px !important;
+}
+
+.w-150 {
+  width: 150px !important;
+}
+
+.w-200 {
+  width: 200px !important;
+}
+
+.w-250 {
+  width: 250px !important;
+}
+
+.w-300 {
+  width: 300px !important;
+}
+
+.w-350 {
+  width: 350px !important;
+}
+
+.w-400 {
+  width: 400px !important;
+}
+
+.w-450 {
+  width: 450px !important;
+}
+
+.w-500 {
+  width: 500px !important;
+}
+
+body {
+  background-position: center top;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
 #app {
+  min-height: 100vh;
   padding-top: 52px;
 }
 
@@ -14277,26 +14368,9 @@ a.is-muted:hover {
   min-height: 100vh;
   margin-top: -52px;
   padding-top: 52px;
-}
-
-.guest-form .background {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-  position: relative;
-  background-color: #fff;
-  background-position: center;
+  background-position: top 70px right 200px;
   background-size: cover;
-}
-
-.guest-form .background:before {
-  content: '';
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: #fff;
 }
 
 .guest-form .form-container {
@@ -14314,6 +14388,8 @@ a.is-muted:hover {
   padding-top: 100px;
   min-width: 33.33%;
   max-width: 400px;
+  -webkit-box-shadow: 0 0 30px gainsboro;
+          box-shadow: 0 0 30px gainsboro;
 }
 
 .guest-form .notification {
@@ -14325,5 +14401,13 @@ a.is-muted:hover {
 .guest-form .form {
   width: 100%;
   max-width: 275px;
+}
+
+.card.is-translucid {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.card.is-full-height {
+  min-height: calc(100vh - 100px);
 }
 

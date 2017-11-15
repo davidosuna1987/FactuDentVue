@@ -1,5 +1,13 @@
+body{
+	background-position: center top;
+	background-attachment: fixed;
+	background-size: cover;
+}
+
 #app{
+	min-height: 100vh;
 	padding-top: 52px;
+	// padding-bottom: 52px;
 }
 
 .guest-form{
@@ -8,24 +16,9 @@
     min-height: 100vh;
     margin-top: -52px;
     padding-top: 52px;
-
-    .background{
-    	flex: 1;
-    	position: relative;
-		background-color: #fff;
-		background-position: center;
-		background-size: cover;
-
-		&:before{
-			content: '';
-			width: 100%;
-			height: 100%;
-			position: absolute;
-			top: 0;
-			left: 0;
-			background-color: rgba(0,0,0,.5);
-		}
-    }
+    background-position: top 70px right 200px;
+    background-size: cover;
+    background-color: #fff;
 
 	.form-container{
 		position: relative;
@@ -36,6 +29,7 @@
 		padding-top: 100px;
 		min-width: 33.33%;
 		max-width: 400px;
+		box-shadow: 0 0 30px gainsboro;
 	}
 
 	.notification{
@@ -47,5 +41,15 @@
 	.form{
 		width: 100%;
 		max-width: 275px;
+	}
+}
+
+.card{
+	&.is-translucid{
+		background-color: rgba(255,255,255,0.9);
+	}
+
+	&.is-full-height{
+		min-height: calc(100vh - 100px);
 	}
 }

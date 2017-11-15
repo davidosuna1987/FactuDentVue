@@ -15,3 +15,14 @@ $sides: (top, bottom, left, right); // Leave this variable alone
     }
   }
 }
+
+/**
+ * Width_helpers
+ */
+$widthamounts: (5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 75, 100, 150, 200, 250, 300, 350, 400, 450, 500); // Adjust this to include the pixel amounts you need.
+
+@each $width in $widthamounts {
+  .w-#{$width} {
+    width: #{$width}px !important;
+  }
+}

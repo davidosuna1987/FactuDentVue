@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'username', 'password', 'role_id', 'api_key', 'active',
     ];
 
     /**
@@ -26,4 +26,25 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function role(){
+        return $this->belongsTo(Role::class);
+    }
+
+    public function hasRole($role){
+        return $this->role->slug == $role;
+    }
+
+    public function isGod(){
+        return $this->role->slug == 'god';
+    }
+
+    public function isAdmin(){
+        return $this->role->slug == 'admin';
+    }
+
+    public function isActiveUser(){
+        return $this->role->slug == 'user' and $this->active;
+        return $this->active;
+    }
 }

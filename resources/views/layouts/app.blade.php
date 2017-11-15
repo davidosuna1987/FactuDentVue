@@ -5,25 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- CSRF Token -->
+    {{-- CSRF Token --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>FactuDent</title>
+    <title>Keyworth</title>
 
-    <!-- Font Awesome -->
+    {{-- Favicon --}}
+    <link rel="icon" type="image/png" href="{{ asset('images/isotipe.png') }}" />
+
+    {{-- Font Awesome --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- Material Icons -->
+    {{-- Material Icons --}}
     <link rel="stylesheet" href="//cdn.materialdesignicons.com/2.0.46/css/materialdesignicons.min.css">
-    <!-- Styles -->
+    {{-- Styles --}}
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
-    <div id="app">
+<body style="background-image: url({{ asset('images/backgrounds/background-01.jpg')  }});">
+    <main id="app">
         <nav class="navbar is-transparent has-shadow is-fixed-top">
           <div class="container">
             <div class="navbar-brand">
-              <a class="navbar-item is-tab" href="{{ route('home') }}">
-                <img src="{{ asset('images/factudent-logo.png') }}" alt="FactuDent Logo" width="112" height="28">
+              <a class="navbar-item is-tab" href="{{ route('app.index') }}">
+                <img src="{{ asset('images/logo.png') }}" alt="Keyworth Logo" width="112" height="28">
               </a>
               <div class="navbar-burger burger" data-target="top-navbar-menu">
                 <span></span>
@@ -72,7 +75,7 @@
           </div>
         </nav>
         @yield('content')
-    </div>
+    </main>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>

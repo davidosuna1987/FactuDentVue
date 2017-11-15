@@ -2,8 +2,7 @@
 
 @section('content')
 
-<section class="guest-form">
-    <div class="background" style="background-image: url({{ asset('images/backgrounds/gabinete-herramientas.jpg')  }});"></div>
+<section class="guest-form" style="background-image: url({{ asset('images/backgrounds/keyworth-apache.png')  }});">
     <div class="form-container">
         <form class="form" method="POST" action="{{ route('login') }}" role="form">
             {{ csrf_field() }}

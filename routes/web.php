@@ -12,9 +12,23 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Routes for active clients
+Route::group(['prefix' => 'app', 'middleware' => 'active.user'], function(){
+
+	// Route for root active user directory
+	Route::get('/', 'App\ActiveUserController@index')->name('app.index');
+
+});
+
+// Routes for admins and gods
+Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
+
+	// Route for root active user directory
+	Route::get('/', 'Admin\AdminUserController@index')->name('admin.index');
+
+});
