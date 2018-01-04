@@ -1,0 +1,27 @@
+.field{
+	.control{
+		margin-bottom: 0 !important;
+	}
+
+	&.has-error{
+		position: relative;
+
+		.control{
+			margin-bottom: 1em !important;
+		}
+
+		.help{
+	    position: absolute;
+	    bottom: -20px;
+	    margin: 0 !important;
+		}
+	}
+}
+
+.select{
+	&:after{
+		border: solid 1px $turquoise !important;
+		border-right: 0 !important;
+		border-top: 0 !important;
+	}
+}

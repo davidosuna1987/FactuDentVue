@@ -1,0 +1,52 @@
+//Login layout
+#app.auth{
+	padding-top: 52px;
+}
+
+//APP layout
+#app.app{
+	padding-top: 52px;
+	padding-left: 225px;
+
+	main.container{
+		width: 100%;
+		padding: 40px;
+	}
+}
+
+//PDF layout
+#app.pdf{
+	padding: 100px 60px 0;
+
+	.pdf-logo{
+		position: fixed;
+		top: 20px;
+		right: 60px;
+	}
+
+	// .column{
+	// 	&.is-half{
+	// 		width: 45%;
+
+	// 		&:first-child{
+	// 			float: left;
+	// 		}
+
+	// 		&:last-child{
+	// 			float: right;
+	// 		}
+	// 	}
+	// }
+}
+
+
+.remove-invoice-line {
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.add-invoice-line{
+	font-size: 0.875em;
+	cursor: pointer;
+}

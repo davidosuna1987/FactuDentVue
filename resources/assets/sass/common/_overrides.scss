@@ -1,0 +1,256 @@
+/*=========================================
+============ General overrides ============
+=========================================*/
+
+*:not([class^="swal-icon"]){
+	border-radius: 0 !important;
+}
+
+/*=========================================
+============= Text overrides ==============
+=========================================*/
+
+.is-muted{
+	color: $grey-light !important;
+}
+
+a{
+	color: $turquoise;
+
+	&.is-muted:hover{
+		color: $grey !important;
+	}
+}
+
+/*=========================================
+============ Navbar overrides =============
+=========================================*/
+
+.navbar-item{
+	&.is-tab{
+		&:hover,
+		&.is-active{
+			color: $turquoise;
+			border-bottom-color: $turquoise;
+			border-bottom-width: 1px;
+		}
+	}
+}
+
+@media screen and (min-width: 1024px){
+	.navbar-link{
+		&:after{
+			border-color: $turquoise;
+		}
+	}
+}
+
+/*=========================================
+============ Button overrides =============
+=========================================*/
+
+.button{
+	&:focus,
+	&.is-focused{
+		&:not(:active){
+			box-shadow: 0 0 0 0.125em rgba(0, 209, 178, 0.25);
+		}
+	}
+
+	&:not(.is-primary, .is-link, .is-danger, .is-warning, .is-success, .is-info){
+		&:focus,
+		&.is-focused{
+			&:not(:active){
+				border-color: $turquoise;
+			}
+		}
+	}
+}
+
+/*=========================================
+============= Form overrides ==============
+=========================================*/
+
+.input,
+.select select,
+.textarea{
+	&.is-small{
+		width: initial;
+		height: 22.28px;
+    padding: 0 0 0 1px;
+    box-shadow: none;
+	}
+	&.is-primary{
+		border-color: #dbdbdb;
+
+		&:focus,
+		&.is-focused,
+		&:focus,
+		&.is-focused{
+			border-color: $turquoise;
+			box-shadow: none !important;
+		}
+
+		&:active,
+		&.is-active,
+		&:active,
+		&.is-active{
+			box-shadow: none !important;
+		}
+	}
+
+	&.is-danger{
+		border-color: $red;
+
+		&:focus,
+		&.is-focused,
+		&:focus,
+		&.is-focused{
+			border-color: $red;
+			box-shadow: none !important;
+		}
+
+		&:active,
+		&.is-active,
+		&:active,
+		&.is-active{
+			box-shadow: none !important;
+		}
+	}
+}
+
+.b-checkbox{
+	&.checkbox{
+		&.is-small{
+			input[type=checkbox] + .check{
+				width: 15px;
+				height: 15px;
+				border-radius: 0;
+				border-width: 1px;
+			}
+		}
+	}
+	&.label{
+		font-weight: 400;
+	}
+}
+
+/*=========================================
+============ Tables overrides =============
+=========================================*/
+
+.content{
+	table{
+		&:not(.is-hoverable){
+			tr{
+				&:hover{
+					background-color: transparent !important;
+				}
+			}
+		}
+
+		&.has-no-borders{
+			tr, th, td{
+				border: none !important;
+			}
+		}
+
+		&.has-no-padding{
+			th, td{
+				padding-top: 0 !important;
+				padding-bottom: 0 !important;
+			}
+		}
+
+		&.has-text-small{
+			th, td, input, textarea{
+				font-size: 0.875em !important;
+			}
+		}
+
+		th, td{
+			&.is-empty{
+				border: none !important;
+			}
+
+			&.has-input-field{
+				vertical-align: middle;
+
+				input, textarea{
+			    display: inline-table;
+			    width: 100%;
+
+			    &.has-no-borders{
+			    	border: none !important;
+			    }
+				}
+
+				.select{
+					select{
+						height: 1.865em !important;
+						line-height: 1.4 !important;
+					}
+
+					&:after{
+						margin-top: -0.575em !important;
+					}
+				}
+			}
+		}
+
+		thead{
+			tr{
+				&:hover{
+					background-color: initial !important;
+				}
+			}
+		}
+  }
+}
+
+/*=========================================
+========== Pagination overrides ===========
+=========================================*/
+
+.pagination{
+	justify-content: center;
+	list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+
+	li{
+		margin: 0 8px;
+	}
+}
+
+/*=========================================
+========== SweetAlert overrides ===========
+=========================================*/
+
+.swal-overlay {
+  background-color: rgba(0,0,0,.2);
+}
+
+.swal-button{
+	&:focus{
+		// box-shadow: 0 0 0 1px #fff, 0 0 0 2px rgba(100,114,165,.2);
+		box-shadow: none;
+	}
+
+	&.swal-button--confirm {
+	  background-color: #00d1b2;
+	  color: #fff;
+	}
+
+	&.swal-button--danger {
+	  background-color: #ff3860;
+	  color: #fff;
+	}
+}
+
+
+.swal-button--cancel {
+  border: solid 1px #dbdbdb;
+  background-color: #fff;
+  color: #000;
+}

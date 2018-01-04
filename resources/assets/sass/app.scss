@@ -2,9 +2,6 @@
 // Fonts
 // @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
 
-// Variables
-@import "variables";
-
 // Bulma
 @import "node_modules/bulma/bulma";
 
@@ -12,6 +9,13 @@
 @import "node_modules/buefy/src/scss/buefy";
 
 // Custom SASS pages
-@import "overrides";
-@import "helpers";
-@import "styles";
+@import "common/variables";
+@import "common/helpers";
+@import "common/overrides";
+@import "common/general";
+
+@import "components/navbar";
+@import "components/forms";
+@import "components/snackbar";
+
+@import "layouts/auth";

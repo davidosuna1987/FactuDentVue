@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.auth')
 
 @section('content')
 
@@ -12,7 +12,7 @@
                 <label for="name" class="label is-small">Nombre</label>
 
                 <p class="control has-icons-left">
-                    <input id="name" type="text" class="input is-small{{ $errors->has('name') ? ' is-danger' : ' is-primary' }}" name="name" value="{{ old('name') }}" required autofocus>
+                    <input id="name" type="text" class="input is-small{{ $errors->has('name') ? ' is-danger' : ' is-primary' }}" name="name" value="{{ old('name') }}" autofocus>
                     <span class="icon is-small is-left"><i class="fa fa-user"></i></span>
 
                     @if($errors->has('name'))
@@ -21,11 +21,24 @@
                 </p>
             </div>
 
+            <div class="field{{ $errors->has('surnames') ? ' has-error' : '' }}">
+                <label for="surnames" class="label is-small">Apellidos</label>
+
+                <p class="control has-icons-left">
+                    <input id="surnames" type="text" class="input is-small{{ $errors->has('surnames') ? ' is-danger' : ' is-primary' }}" name="surnames" value="{{ old('surnames') }}">
+                    <span class="icon is-small is-left"><i class="fa fa-user"></i></span>
+
+                    @if($errors->has('surnames'))
+                        <p class="help is-danger">{{ $errors->first('surnames') }}</p>
+                    @endif
+                </p>
+            </div>
+
             <div class="field{{ $errors->has('email') ? ' has-error' : '' }}">
                 <label for="email" class="label is-small">E-Mail</label>
 
                 <p class="control has-icons-left">
-                    <input id="email" type="email" class="input is-small{{ $errors->has('email') ? ' is-danger' : ' is-primary' }}" name="email" value="{{ old('email') }}" required autofocus>
+                    <input id="email" type="email" class="input is-small{{ $errors->has('email') ? ' is-danger' : ' is-primary' }}" name="email" value="{{ old('email') }}">
                     <span class="icon is-small is-left"><i class="fa fa-at"></i></span>
 
                     @if($errors->has('email'))
@@ -38,7 +51,7 @@
                 <label for="password" class="label is-small">Contraseña</label>
 
                 <p class="control has-icons-left">
-                    <input id="password" type="password" class="input is-small{{ $errors->has('password') ? ' is-danger' : ' is-primary' }}" name="password" required>
+                    <input id="password" type="password" class="input is-small{{ $errors->has('password') ? ' is-danger' : ' is-primary' }}" name="password">
                     <span class="icon is-small is-left"><i class="fa fa-lock"></i></span>
 
                     @if($errors->has('password'))
@@ -51,7 +64,7 @@
                 <label for="password_confirmation" class="label is-small">Confirmar contraseña</label>
 
                 <p class="control has-icons-left">
-                    <input id="password_confirmation" type="password" class="input is-small{{ $errors->has('password_confirmation') ? ' is-danger' : ' is-primary' }}" name="password_confirmation" required>
+                    <input id="password_confirmation" type="password" class="input is-small{{ $errors->has('password_confirmation') ? ' is-danger' : ' is-primary' }}" name="password_confirmation">
                     <span class="icon is-small is-left"><i class="fa fa-lock"></i></span>
 
                     @if($errors->has('password_confirmation'))

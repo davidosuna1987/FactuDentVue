@@ -1,0 +1,19 @@
+.side-menu{
+  position: fixed;
+  left: 0;
+  width: 225px;
+  height: 100%;
+  padding: 0 25px;
+
+  &.is-dark{
+  	a{
+  		font-size: 0.9rem;
+    	padding: 0.25em 0.5em;
+  		background-color: transparent;
+
+  		&:hover{
+  			color: $turquoise;
+  		}
+  	}
+  }
+}
