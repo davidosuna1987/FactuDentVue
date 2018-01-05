@@ -1192,10 +1192,10 @@ jQuery(document).ready(function ($) {
     tr.dataset.id = newDataId;
     var tdDescription = document.createElement('td');
     tdDescription.className = 'has-input-field';
-    var textareaDescription = document.createElement('textarea');
-    textareaDescription.className = 'invoice-description input ' + statusClass;
-    textareaDescription.name = 'invoiceline[' + newDataId + '][description]';
-    textareaDescription.required = 'required';
+    var inputDescription = document.createElement('input');
+    inputDescription.className = 'invoice-description input ' + statusClass;
+    inputDescription.name = 'invoiceline[' + newDataId + '][description]';
+    inputDescription.required = 'required';
     var tdQuantity = document.createElement('td');
     tdQuantity.className = 'has-input-field w-100';
     var inputQuantity = document.createElement('input');
@@ -1245,7 +1245,7 @@ jQuery(document).ready(function ($) {
     tdTotal.appendChild(spanTotal);
     tdUnitPrice.appendChild(inputUnitPrice);
     tdQuantity.appendChild(inputQuantity);
-    tdDescription.appendChild(textareaDescription);
+    tdDescription.appendChild(inputDescription);
 
     tr.appendChild(tdDescription);
     tr.appendChild(tdQuantity);
