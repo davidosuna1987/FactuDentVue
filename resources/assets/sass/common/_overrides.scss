@@ -74,7 +74,7 @@ a{
 .input,
 .select select,
 .textarea{
-	&.is-small{
+	&[type=date].is-small{
 		width: initial;
 		height: 22.28px;
     padding: 0 0 0 1px;

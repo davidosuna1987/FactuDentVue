@@ -15,14 +15,7 @@ class User extends Authenticatable
     protected $table = 'users';
 
     protected $fillable = [
-        'name',
-        'surnames',
-        'email',
-        'username',
-        'password',
-        'api_key',
-        'role_id',
-        'active',
+        'name', 'surnames', 'email', 'username', 'password', 'api_key', 'role_id', 'active',
     ];
 
     protected $hidden = [
@@ -46,7 +39,7 @@ class User extends Authenticatable
     }
 
     public function isAdmin(){
-        return $this->role->slug == 'admin';
+        return $this->role->slug == 'god' or $this->role->slug == 'admin';
     }
 
     public function isActiveUser(){

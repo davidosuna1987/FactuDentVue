@@ -24,7 +24,7 @@ class HomeController extends Controller
     public function index()
     {
         //\Alert::success('¡La factura se ha actualizado correctamente!', '¡Hecho!')->persistent('OK');
-        return redirect()->route('home')->with('success', 'EXITOSO');
+        return redirect()->route('home');
         if(auth()->user()->isGod() or auth()->user()->isAdmin()) return view('app.clinics.create');
         return view('app.index');
     }

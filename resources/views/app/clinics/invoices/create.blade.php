@@ -31,7 +31,7 @@
 							</tr>
 							<tr>
 								<th>Fecha</th>
-								<td class="has-input-field"><input class="invoice-date-fake has-no-borders" id="invoice_date_fake" type="date" name="invoice_date_fake" value="{{\Carbon\Carbon::parse('today')->format('Y-m-d')}}"></td>
+								<td><input class="input invoice-date-fake is-primary is-small" id="invoice_date_fake" type="date" name="invoice_date_fake" value="{{\Carbon\Carbon::parse('today')->format('Y-m-d')}}"></td>
 							</tr>
 							<tr>
 								<th>Nombre</th>

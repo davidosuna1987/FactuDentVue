@@ -11,20 +11,20 @@ class RolesTableSeeder extends Seeder
      */
     public function run()
     {
-    	DB::table('roles')->truncate();
+        DB::table('roles')->truncate();
 
-    	//Crear roles
+        //Crear roles
         DB::table('roles')->insert([
             'name' => 'God',
             'slug' => 'god'
         ]);
-    	DB::table('roles')->insert([
-    		'name' => 'Administrador',
-    		'slug' => 'admin'
-    	]);
-    	DB::table('roles')->insert([
-    		'name' => 'Usuario',
-    		'slug' => 'user'
-    	]);
+        DB::table('roles')->insert([
+            'name' => 'Administrador',
+            'slug' => 'admin'
+        ]);
+        DB::table('roles')->insert([
+            'name' => 'Usuario',
+            'slug' => 'user'
+        ]);
     }
 }

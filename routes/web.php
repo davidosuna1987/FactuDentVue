@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Auth::routes();
 
@@ -22,9 +22,18 @@ Route::get('/home', function(){
 	return view('home');
 })->name('home');
 
-Route::group(['prefix' => 'app', 'middleware' => 'auth'], function(){
+// Routes for admins and gods
+Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
 
-	Route::get('/', 'HomeController@index')->name('index');
+ 		// Route for root active user directory
+		Route::get('/', 'Admin\AdminUserController@index')->name('admin.index');
+});
+
+// Routes for active clients
+Route::group(['prefix' => 'app', 'middleware' => 'active.user'], function(){
+
+	// Route for root active user directory
+	Route::get('/', 'App\ActiveUserController@index')->name('app.index');
 
 	//Clinics routes
 	Route::get('clinics', 'ClinicController@index')->name('clinics.index');
@@ -56,3 +65,6 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function(){
 	Route::get('invoices/{invoice}/pdf/show', 'InvoiceController@showPDF')->name('invoices.pdf.show');
 
 });
+
+
+
