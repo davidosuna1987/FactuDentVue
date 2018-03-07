@@ -1,0 +1,101 @@
+.particles-content{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	left: 15px;
+	position: relative;
+
+	i{
+		display: inline-block;
+		transform: scale(0);
+		transition: transform 300ms ease-in-out 750ms;
+
+	}
+}
+
+// Este visible hace referencia a la clase appear o appear-parent
+.visible{
+	.particles-content i{
+		transform: scale(1);
+	}
+
+	.particle{
+		animation-play-state: running;
+	}
+}
+
+.particle {
+	opacity: 0;
+	position: absolute;
+	border-radius: 999px;
+	animation: shoot 3s ease-out;
+	animation-name: shoot, fade;
+	animation-play-state: paused;
+	animation-delay: 700ms;
+	top: calc(50% - 3px);
+	left: calc(50% - 3px);
+
+	@for $i from 0 to 80 {
+		$d: random(7)+1px;
+
+		&:nth-child(#{$i + 1}) {
+			width: $d; height: $d;
+		}
+	}
+
+	@for $i from 0 to 20 {
+		$t: (1 + .01*random(100))*1s;
+
+		&:nth-child(#{$i + 1}) {
+			transform: translate(random(100)*1vw,
+													 random(100)*1vh);
+			background: hsl(random(100)+100, 100%, 90%);
+			animation-duration: $t;
+		}
+	}
+
+	@for $i from 20 to 40 {
+		$t: (1 + .01*random(100))*1s;
+
+		&:nth-child(#{$i + 1}) {
+			transform: translate((random(100)*-1)+vw,
+													 (random(100)*-1)+vh);
+			background: hsl(random(100)+100, 100%, 90%);
+			animation-duration: $t;
+		}
+	}
+
+	@for $i from 40 to 60 {
+		$t: (1 + .01*random(100))*1s;
+
+		&:nth-child(#{$i + 1}) {
+			transform: translate(random(100)*1vw,
+													 (random(100)*-1)+vh);
+			background: hsl(random(100)+100, 100%, 90%);
+			animation-duration: $t;
+		}
+	}
+
+	@for $i from 60 to 80 {
+		$t: (1 + .01*random(100))*1s;
+
+		&:nth-child(#{$i + 1}) {
+			transform: translate((random(100)*-1)+vw,
+													 random(100)*1vw);
+			background: hsl(random(100)+100, 100%, 90%);
+			animation-duration: $t;
+		}
+	}
+}
+
+@keyframes scale {
+	0% { transform: scale(0); }
+	100% { transform: scale(1); }
+}
+@keyframes shoot {
+	0% { transform: translate(0, 0); }
+}
+@keyframes fade {
+	from { opacity: 1 }
+	to { opacity: 0 }
+}

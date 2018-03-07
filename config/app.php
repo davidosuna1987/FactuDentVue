@@ -237,6 +237,7 @@ return [
          */
         'Alert' => UxWeb\SweetAlert\SweetAlert::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
+        'Carbon' => 'Carbon\Carbon',
 
     ],
 

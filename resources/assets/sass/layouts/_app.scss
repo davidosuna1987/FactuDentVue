@@ -1,0 +1,188 @@
+.app-index-action{
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover span{
+		color: $turquoise;
+  }
+}
+
+.invoice-dentist-percentage-row{
+  th{
+    position: relative;
+
+    .field{
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+
+      .invoice-dentist-percentage{
+        width: 50px;
+        box-shadow: none;
+        border: solid 1px #dbdbdb;
+
+        &:focus,
+        &.is-focused,
+        &:focus,
+        &.is-focused{
+          border-color: $turquoise;
+          box-shadow: none;
+        }
+      }
+
+      .icon{
+        position: absolute;
+        bottom: 1px;
+        right: 12px;
+      }
+    }
+  }
+
+  td{
+    position: relative;
+
+    span{
+      position: absolute;
+      bottom: 5px;
+      right: 7px;
+    }
+  }
+}
+
+.invoice-retention-row{
+  th{
+    position: relative;
+
+    .field{
+      position: absolute;
+      bottom: 4px;
+      right: 5px;
+
+      .invoice-retention{
+        width: 50px;
+        box-shadow: none;
+        border: solid 1px #dbdbdb;
+
+        &:focus,
+        &.is-focused,
+        &:focus,
+        &.is-focused{
+          border-color: $turquoise;
+          box-shadow: none;
+        }
+      }
+
+      .icon{
+        position: absolute;
+        bottom: 1px;
+        right: 12px;
+      }
+    }
+  }
+
+  td{
+    position: relative;
+
+    span{
+      position: absolute;
+      bottom: 5px;
+      right: 7px;
+    }
+  }
+}
+
+#invoice-state-input{
+  display: none;
+}
+
+.invoice-state-switcher{
+  border: solid 1px white;
+  font-size: 0.7rem;
+  width: 80px;
+  height: 18px;
+  display: inline-block;
+  position: relative;
+  padding: 5px;
+  border-radius: 10px !important;
+  overflow: hidden;
+  cursor: pointer;
+  color: white;
+  top: 2px;
+
+  .invoice-switcher-wrapper{
+    position: absolute;
+    width: 160px;
+    top: 0;
+    left: -9px;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+    transition: all ease-in-out 300ms;
+	}
+
+  &.unpaid{
+  	.invoice-switcher-wrapper{
+  		transform: translateX(-64px);
+  	}
+  }
+
+	.invoice-state-paid{
+    flex: 1;
+    background: $green;
+    padding: 2px 17px;
+	}
+
+	.invoice-state-limit{
+		display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: #dbdbdb;
+    border: solid 1px white;
+    border-radius: 999px !important;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+	}
+
+	.invoice-state-unpaid{
+    flex: 1;
+    background: $red;
+    padding: 2px 14px 2px 11px;
+    text-align: right;
+	}
+}
+
+.invoice-date-range-selector{
+  display: flex;
+  align-items: flex-end;
+
+  .date-search-type-field{
+    margin: 0 10px 0 0;
+  }
+
+  .date-picker-field{
+    margin: 0 10px;
+    width: 250px;
+  }
+}
+
+.color-picker-wrapper{
+  position: relative;
+
+  #pdf-color{
+    cursor: pointer;
+  }
+
+  #color-picker{
+    color: $turquoise;
+    position: absolute;
+    bottom: -1rem;
+    left: 100%;
+    font-size: 4rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+}

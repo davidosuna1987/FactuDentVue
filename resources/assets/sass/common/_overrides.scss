@@ -2,8 +2,33 @@
 ============ General overrides ============
 =========================================*/
 
-*:not([class^="swal-icon"]){
+.swal-modal{
 	border-radius: 0 !important;
+}
+
+a,
+// .tag,
+input,
+button,
+select,
+textarea{
+	outline: none;
+
+	&:not(.is-rounded){
+		border-radius: 0 !important;
+	}
+}
+
+.tag{
+	cursor: default;
+}
+
+.column{
+	&.badge[data-badge]::after {
+	    top: 3px;
+	    right: 3px;
+			left: auto;
+	}
 }
 
 /*=========================================
@@ -71,6 +96,19 @@ a{
 ============= Form overrides ==============
 =========================================*/
 
+.invoice-date-picker-field{
+	input{
+		width: initial;
+		height: 22.28px;
+		padding-bottom: 5px;
+    box-shadow: none;
+
+    +.icon{
+			height: 25px !important;
+    }
+	}
+}
+
 .input,
 .select select,
 .textarea{
@@ -80,7 +118,7 @@ a{
     padding: 0 0 0 1px;
     box-shadow: none;
 	}
-	&.is-primary{
+	// &.is-primary{
 		border-color: #dbdbdb;
 
 		&:focus,
@@ -97,7 +135,7 @@ a{
 		&.is-active{
 			box-shadow: none !important;
 		}
-	}
+	// }
 
 	&.is-danger{
 		border-color: $red;
@@ -213,13 +251,29 @@ a{
 =========================================*/
 
 .pagination{
-	justify-content: center;
-	list-style: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
+  ul{
+  	list-style: none;
+    margin: 0 30px 0 0;
+  }
 
 	li{
-		margin: 0 8px;
+		margin: 0 !important;
+	}
+
+	a{
+		margin: 0 5px !important;
+		font-size: 0.8rem !important;
+    padding: 0 !important;
+
+		&.is-current {
+	    background-color: $turquoise;
+	    border-color: $turquoise;
+	    color: #fff;
+		}
+
+		&:focus{
+			border-color: $turquoise;
+		}
 	}
 }
 
@@ -253,4 +307,91 @@ a{
   border: solid 1px #dbdbdb;
   background-color: #fff;
   color: #000;
+}
+
+/*=========================================
+======= Bulma Extenssions overrides =======
+=========================================*/
+
+.tooltip{
+	&.is-dark{
+		&:before{
+			border-top-color: rgba(74, 74, 74, 0.9) !important;
+		}
+		&:after{
+			border-radius: 3px;
+			background: rgba(74, 74, 74, 0.9);
+		}
+	}
+}
+
+
+.badge[data-badge]::after {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/*=========================================
+============ Colpick overrides ============
+=========================================*/
+
+.colpick_hex{
+	overflow: visible !important;
+  // top: 301px !important;
+	// left: 504px !important;
+	height: 207px !important;
+	background: white !important;
+  border: solid 1px #dbdbdb !important;
+}
+
+.colpick_new_color,
+.colpick_hex_field{
+	display: none !important;
+}
+
+.colpick_selector_outer{
+	border: 1px solid #dbdbdb !important;
+  border-radius: 999px !important;
+  overflow: hidden;
+}
+
+.colpick_selector_inner{
+  border: 1px solid white !important;
+  background: white !important;
+}
+
+.colpick_color{
+	outline: 1px solid #dbdbdb !important;
+}
+
+.colpick_hue{
+	border: 1px solid #dbdbdb !important;
+  cursor: row-resize !important;
+}
+
+.colpick_hue_larr{
+	border-left-color: $turquoise !important;
+}
+
+.colpick_hue_rarr{
+	border-right-color: $turquoise !important;
+}
+
+.colpick_default{
+  position: absolute;
+  bottom: 7px;
+  left: 6px;
+  font-size: 0.75rem;
+  padding: 0 10px;
+}
+
+.colpick_submit{
+	display: block !important;
+  top: auto !important;
+  bottom: 7px !important;
+  left: auto !important;
+  right: 10px !important;
+  padding: 1px 5px 1px 3px;
+  font-weight: 400 !important;
 }

@@ -1,0 +1,82 @@
+#app.web{
+	main{
+		max-width: 100%;
+		width: 100%;
+	}
+
+  .header{
+    @extend .gradient-background;
+    align-items: center;
+    display: flex;
+    font-size: 18px;
+    height: 600px;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    transform-style: preserve-3d;
+    perspective: 100px;
+    margin-bottom: 30px;
+
+    .content{
+      position: relative;
+      z-index: 2;
+    }
+
+	  .title,
+	  .subtitle{
+	    color: #fff;
+	  }
+
+	  .title{
+  		font-family: 'Pacifico', cursive;
+	  	font-size: 4rem;
+	  	letter-spacing: initial;
+	  }
+
+	  &:before{
+	    // background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,.8)), url({{asset('images/backgrounds/web-background.jpg')}}) no-repeat bottom;
+	    background-size: cover;
+	    content: "";
+	    position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+	    z-index: -1;
+	  }
+
+	  &:after{
+	    background: #fff;
+	    content: "";
+	    height: 100vh;
+	    left: -5%;
+	    position: absolute;
+      right: -5%;
+      top: 600px;
+	    transform-origin: 0 0;
+	    transform: rotateZ(-4deg);
+	    z-index: 0;
+	  }
+  }
+
+  .title{
+  	font-weight: 700;
+  	letter-spacing: -0.5px;
+  }
+
+  .subtitle{
+  	margin-top: 12px;
+    margin-bottom: 80px;
+  }
+
+  .card-icon{
+    font-size: 2.5rem;
+    margin: 15px auto;
+
+    +.title{
+    	margin-top: 15px;
+    }
+	}
+}

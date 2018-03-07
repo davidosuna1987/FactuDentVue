@@ -12,10 +12,21 @@ use Illuminate\Http\Request;
 class InvoiceController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            if(!auth()->user()->canCreateInvoices()):
+                Session::flash('message', 'Para poder emitir facturas primero debes rellenar todos los campos obligatorios en tu perfil.');
+                return redirect()->route('profile');
+            endif;
+
+            return $next($request);
+        });
+    }
+
     public function index()
     {
-        $user = auth()->user();
-        $invoices = $user->invoices()->paginate(10);
+        $invoices = auth()->user()->invoices()->orderBy('invoice_no', 'desc')->paginate(20);
         return view('app.invoices.index', compact('invoices'));
     }
 
@@ -38,17 +49,21 @@ class InvoiceController extends Controller
             ]));
         endforeach;
 
+        $dentist_percentage = (int) $request->get('dentist_percentage');
         $sub_total = $invoice_lines->sum('total');
-        $retention_percent = 15;
-        $retention = $sub_total * $retention_percent / 100;
-        $total = $sub_total - $retention;
-
+        $dentist_sub_total = $sub_total * $dentist_percentage / 100;
+        $retention_percent = $request->get('invoice_retention');
+        $retention = $dentist_sub_total * $retention_percent / 100;
+        $total = $dentist_sub_total  - $retention;
 
         $invoice = Invoice::create([
             'clinic_id' => $request->get('clinic_id'),
             'invoice_no' => $request->get('invoice_no'),
             'invoice_date' => strtotime($request->get('invoice_date')),
             'payment_date' => null,
+            'ovserbations' => $request->get('ovserbations'),
+            'retention' => $retention_percent,
+            'dentist_percentage' => $dentist_percentage,
             'sub_total' => $sub_total,
             'total' => $total
         ]);
@@ -95,19 +110,20 @@ class InvoiceController extends Controller
 
     public function show($invoice_no)
     {
-        $invoice = Invoice::where('invoice_no', $invoice_no)->first();
+        $invoice = auth()->user()->invoices()->where('invoice_no', $invoice_no)->first();
         return view('app.invoices.show', compact('invoice'));
     }
 
     public function edit($invoice_no)
     {
-        $invoice = Invoice::where('invoice_no', $invoice_no)->first();
+        $invoice = auth()->user()->invoices()->where('invoice_no', $invoice_no)->first();
         return view('app.invoices.edit', compact('invoice'));
     }
 
     public function update(Request $request, $invoice_no)
     {
-        $invoice = Invoice::where('invoice_no', $invoice_no)->first();
+        $invoice = auth()->user()->invoices()->where('invoice_no', $invoice_no)->first();
+        $payment_date = $request->get('invoice_paid') ? strtotime(\Carbon::now()) : null;
 
         //Delete old invoice_lines and attach the new ones
         InvoiceLine::where('invoice_id', $invoice->id)->delete();
@@ -124,15 +140,21 @@ class InvoiceController extends Controller
             ]));
         endforeach;
 
+        $dentist_percentage = (int) $request->get('dentist_percentage');
         $sub_total = $invoice_lines->sum('total');
-        $retention_percent = 15;
-        $retention = $sub_total * $retention_percent / 100;
-        $total = $sub_total - $retention;
+        $dentist_sub_total = $sub_total * $dentist_percentage / 100;
+        $retention_percent = $request->get('invoice_retention');
+        $retention = $dentist_sub_total * $retention_percent / 100;
+        $total = $dentist_sub_total  - $retention;
 
         $invoice->update([
             'clinic_id' => $request->get('clinic_id'),
+            'invoice_no' => $request->get('invoice_no'),
             'invoice_date' => strtotime($request->get('invoice_date')),
-            // 'payment_date' => null,
+            'payment_date' => $payment_date,
+            'ovserbations' => $request->get('ovserbations'),
+            'dentist_percentage' => $dentist_percentage,
+            'retention' => $retention_percent,
             'sub_total' => $sub_total,
             'total' => $total
         ]);
@@ -178,6 +200,48 @@ class InvoiceController extends Controller
         endif;
     }
 
+    // public function pay($invoice_id, Request $request)
+    // {
+    //     $invoice = auth()->user()->invoices()->where('id', (int) $invoice_id)->first();
+    //     if($request->ajax()):
+    //         $invoice->update([
+    //             'payment_date' => \Carbon::now()
+    //         ]);
+
+    //         return response()->json([
+    //             'message' => '¡La factura se '.$invoice->invoice_no.' ha marcado como pagada!',
+    //             'payment_date' => \Carbon::now()->diffForHumans(),
+    //         ]);
+    //     endif;
+
+    //     $invoice->update([
+    //         'payment_date' => \Carbon::now()
+    //     ]);
+    //     Session::flash('message', '¡La factura se '.$invoice->invoice_no.' ha marcado como pagada!');
+    //     return redirect()->route('invoices.show', $invoice->invoice_no);
+    // }
+
+    // public function unpay($invoice_id, Request $request)
+    // {
+    //     $invoice = auth()->user()->invoices()->where('id', (int) $invoice_id)->first();
+    //     if($request->ajax()):
+    //         $invoice->update([
+    //             'payment_date' => null
+    //         ]);
+
+    //         return response()->json([
+    //             'message' => '¡La factura se '.$invoice->invoice_no.' ha marcado como pendiente!',
+    //             'payment_date' => null,
+    //         ]);
+    //     endif;
+
+    //     $invoice->update([
+    //         'payment_date' => null
+    //     ]);
+    //     Session::flash('message', '¡La factura se '.$invoice->invoice_no.' ha marcado como pendiente!');
+    //     return redirect()->route('invoices.show', $invoice->invoice_no);
+    // }
+
     public function delete(Invoice $invoice)
     {
         $invoice->delete();
@@ -187,8 +251,14 @@ class InvoiceController extends Controller
     }
 
     public function showPDF($invoice_no){
-        $invoice = Invoice::where('invoice_no', $invoice_no)->first();
+        $invoice = auth()->user()->invoices()->where('invoice_no', $invoice_no)->first();
         $pdf = PDF::loadView('app.invoices.pdf.show', ['invoice' => $invoice]);
-        return $pdf->stream('oembed_result.pdf');
+        return $pdf->stream('factudent_factura_'.$invoice_no.'.pdf');
+    }
+
+    public function pending()
+    {
+        $invoices = auth()->user()->pendingInvoices()->orderBy('invoice_no', 'desc')->paginate(20);
+        return view('app.invoices.pending', compact('invoices'));
     }
 }

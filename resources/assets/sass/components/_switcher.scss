@@ -1,0 +1,70 @@
+.switcher{
+  .switcher-title{
+    margin-bottom: 0;
+  }
+
+  .switcher-wrapper{
+    position: relative;
+    margin-top: 8px;
+    border: solid 1px white;
+    font-size: 0.7rem;
+    width: 50px;
+    height: 18px;
+    display: inline-block;
+    padding: 5px;
+    border-radius: 10px !important;
+    overflow: hidden;
+    cursor: pointer;
+    color: white;
+
+    .switcher-controls{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 82px;
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none;
+      transform: translateX(-34px);
+      transition: all ease-in-out 300ms;
+  	}
+
+    [type=checkbox]{
+      display: none;
+
+      &:checked{
+        + .switcher-controls{
+          transform: translateX(0);
+        }
+      }
+    }
+
+  	.switcher-true{
+      flex: 1;
+      background: $green;
+      padding: 0 12px;
+      text-align: left;
+  	}
+
+    .switcher-false{
+      flex: 1;
+      background: $red;
+      padding: 0 11px;
+      text-align: right;
+    }
+
+  	.switcher-limit{
+  		display: inline-block;
+      width: 16px;
+      height: 16px;
+      background: #dbdbdb;
+      border: solid 1px white;
+      border-radius: 999px !important;
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+  	}
+  }
+}

@@ -1,10 +1,18 @@
 /**
  * Spacing_helpers
  */
-$spaceamounts: (0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 75, 100, 150, 200, 250, 300); // Adjust this to include the pixel amounts you need.
+$spaceamounts: (0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 225, 250, 275, 300, 325, 350, 375, 400, 450, 500); // Adjust this to include the pixel amounts you need.
 $sides: (top, bottom, left, right); // Leave this variable alone
 
 @each $space in $spaceamounts {
+  .m-#{$space} {
+    margin: #{$space}px !important;
+  }
+
+  .p-#{$space} {
+    padding: #{$space}px !important;
+  }
+
   @each $side in $sides {
     .m-#{str-slice($side, 0, 1)}-#{$space} {
       margin-#{$side}: #{$space}px !important;
@@ -19,15 +27,10 @@ $sides: (top, bottom, left, right); // Leave this variable alone
 /**
  * Width_helpers
  */
-$widthamounts: (0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 75, 100, 150, 200, 250, 300, 350, 400, 450, 500); // Adjust this to include the pixel amounts you need.
+$widthamounts: (0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 225, 250, 275, 300, 325, 350, 375, 400, 450, 500); // Adjust this to include the pixel amounts you need.
 
 @each $width in $widthamounts {
   .w-#{$width} {
     width: #{$width}px !important;
-    flex: 0 0 #{$width}px !important;
   }
-}
-
-@function mdi($name) {
-    @return char(nth($hexes, index($names, $name)));
 }

@@ -18,23 +18,20 @@ class InvoicesTableSeeder extends Seeder
         $faker = Factory::create();
 
         $clinic = Clinic::create([
-            'user_id' => 2,
-            'name' => 'Clínica Test Uno',
-            'contact' => 'Contacto clínica test uno',
-            'email' => 'clinicauno@test.com',
+            'user_id' => 1,
+            'name' => 'Clinica dental infantil',
+            'contact' => 'Elena Navarro García',
+            'email' => 'ele.navarrogarcia@gmail.com',
             'nif' => '11111111A',
-            'address' => 'Calle Bélgica 14',
-            'locality' => 'Valencia',
-            'province' => 'Valencia',
-            'country' => 'España',
-            'post_code' => 46021,
-            'phone' => '666666666',
-            'fax' => '777777777',
-            'percentage' => 50,
-            'active' => true
+            'address' => 'Calle Amador Merino Reyna',
+            'locality' => 'San Isidro',
+            'province' => 'Lima',
+            'country' => 'Perú',
+            'post_code' => '15046',
+            'phone' => '925250742'
         ]);
 
-        foreach(range(1, 12) as $i):
+        foreach(range(1, 40) as $i):
             $invoice_lines = collect();
 
             foreach(range(1, mt_rand(2, 10)) as $j):
@@ -52,18 +49,21 @@ class InvoicesTableSeeder extends Seeder
                 ]));
             endforeach;
 
-            $sub_total = $invoice_lines->sum('total');
-            $retention_percent = 15;
-            $retention = $sub_total * $retention_percent / 100;
-            $total = $sub_total - $retention;
+            $date = (mt_rand(1,10)>5) ? strtotime(\Carbon::now()) : null;
 
-            $date = ($i%2==0) ? strtotime(\Carbon\Carbon::now()) : null;
+            $dentist_percentage = 50;
+            $sub_total = $invoice_lines->sum('total');
+            $dentist_sub_total = $sub_total * $dentist_percentage / 100;
+            $retention_percent = 15;
+            $retention = $dentist_sub_total * $retention_percent / 100;
+            $total = $dentist_sub_total  - $retention;
 
             $invoice = Invoice::create([
                 'clinic_id' => 1,
-                'invoice_no' => $faker->numberBetween(10000, 999999),
-                'invoice_date' => strtotime('1-'.$i.'-2017'),
+                'invoice_no' => $i,
+                'invoice_date' => strtotime('1-'.mt_rand(1,12).'-2017'),
                 'payment_date' => $date,
+                'dentist_percentage' => $dentist_percentage,
                 'sub_total' => $sub_total,
                 'total' => $total
             ]);

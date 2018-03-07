@@ -25,6 +25,7 @@ class CreateClinicRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
+            'contact' => 'required|string',
             'address' => 'required|string|min:5',
             'locality' => 'required|string|min:3',
             'province' => 'required|string|min:3',

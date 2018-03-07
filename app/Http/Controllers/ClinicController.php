@@ -17,7 +17,7 @@ class ClinicController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $clinics = $user->paginateClinics(5);
+        $clinics = $user->clinics();
         return view('app.clinics.index', compact('clinics'));
     }
 
@@ -100,12 +100,16 @@ class ClinicController extends Controller
 
     public function invoices(Clinic $clinic)
     {
-        $invoices = $clinic->invoices()->paginate(10);
-        return view('app.clinics.invoices.index', compact('clinic'));
+        $invoices = $clinic->invoices();
+        return view('app.clinics.invoices.index', compact('clinic', 'invoices'));
     }
 
     public function createInvoice(Clinic $clinic)
     {
+        if(!auth()->user()->canCreateInvoices()):
+            Session::flash('message', 'Para poder emitir facturas primero debes rellenar todos los campos obligatorios en tu perfil.');
+            return redirect()->route('profile');
+        endif;
         return view('app.clinics.invoices.create', compact('clinic'));
     }
 
@@ -123,16 +127,19 @@ class ClinicController extends Controller
             ]));
         endforeach;
 
+        $dentist_percentage = (int) $request->get('dentist_percentage');
         $sub_total = $invoice_lines->sum('total');
+        $dentist_sub_total = $sub_total * $dentist_percentage / 100;
         $retention_percent = 15;
-        $retention = $sub_total * $retention_percent / 100;
-        $total = $sub_total - $retention;
+        $retention = $dentist_sub_total * $retention_percent / 100;
+        $total = $dentist_sub_total  - $retention;
 
         $invoice = Invoice::create([
             'clinic_id' => $clinic->id,
             'invoice_no' => $request->get('invoice_no'),
             'invoice_date' => strtotime($request->get('invoice_date')),
             'payment_date' => null,
+            'dentist_percentage' => $dentist_percentage,
             'sub_total' => $sub_total,
             'total' => $total
         ]);

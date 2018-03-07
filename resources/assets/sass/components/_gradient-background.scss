@@ -1,0 +1,13 @@
+.gradient-background{
+    background: linear-gradient(253deg, $turquoise, #1797d2, #864fe1);
+    background-size: 300% 300%;
+    -webkit-animation: Background 25s ease infinite;
+    -moz-animation: Background 25s ease infinite;
+    animation: Background 25s ease infinite;
+}
+
+@keyframes Background {
+  0% {background-position: 0% 50%}
+  50% {background-position: 100% 50%}
+  100% {background-position: 0% 50%}
+}

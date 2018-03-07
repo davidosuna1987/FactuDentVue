@@ -1,0 +1,75 @@
+.floating-tooth-background{
+  position: relative;
+  overflow: hidden;
+
+  .floating-tooth{
+    opacity: 0.75;
+    color: white;
+    position: absolute;
+    right: -50px;
+
+    &:nth-child(even){
+      left: -50px;
+    }
+  }
+}
+
+@keyframes spin-right{
+  100% {transform: rotate(360deg);}
+}
+
+@keyframes spin-left{
+  100% {transform: rotate(-360deg);}
+}
+
+@keyframes move-to-right{
+  100% {transform: translateX(calc(500vh));}
+}
+
+@keyframes move-to-left{
+  100% {transform: translateX(calc(-500vh));}
+}
+
+@for $i from 1 through 30 {
+  .floating-tooth:nth-of-type(#{$i}){
+    top: random(100)+vh;
+    transform: scale((random(10)/10)+1);
+    animation: move-to-left (random(5)+15)+s linear infinite random(15000)+ms;
+
+    i{
+      animation: spin-left (random(2000)+3000)+ms linear infinite random(200)+ms;
+    }
+  }
+
+  .header.floating-tooth-background{
+    .floating-tooth:nth-of-type(#{$i}){
+      animation: move-to-right (random(5)+15)+s linear infinite random(15000)+ms;
+
+      i{
+        animation: spin-right (random(2000)+3000)+ms linear infinite random(200)+ms;
+      }
+    }
+  }
+
+  @if $i % 2 == 0{
+    .floating-tooth:nth-of-type(#{$i}){
+      top: random(100)+vh;
+      transform: scale((random(10)/10)+1);
+      animation: move-to-right (random(5)+15)+s linear infinite random(15000)+ms;
+
+      i{
+        animation: spin-right (random(2000)+3000)+ms linear infinite random(200)+ms;
+      }
+    }
+
+    .header.floating-tooth-background{
+      .floating-tooth:nth-of-type(#{$i}){
+        animation: move-to-left (random(5)+15)+s linear infinite random(15000)+ms;
+
+        i{
+          animation: spin-left (random(2000)+3000)+ms linear infinite random(200)+ms;
+        }
+      }
+    }
+  }
+}

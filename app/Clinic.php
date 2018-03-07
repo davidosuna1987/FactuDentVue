@@ -10,20 +10,15 @@ class Clinic extends Model
     protected $table = 'clinics';
 
     protected $fillable = [
-    	'user_id',
-      'name',
-      'contact',
-      'email',
-      'nif',
-      'address',
-      'locality',
-      'province',
-      'country',
-      'post_code',
-      'phone',
-      'fax',
-      'percentage',
-      'active',
+      'user_id', 'name', 'contact', 'email',
+      'nif', 'address', 'locality', 'province', 'country',
+      'post_code', 'phone', 'fax', 'percentage', 'active',
+    ];
+
+    protected $filter = [
+      'id', 'user_id', 'name', 'contact', 'email',
+      'nif', 'address', 'locality', 'province', 'country',
+      'post_code', 'phone', 'fax', 'percentage', 'active', 'created_at',
     ];
 
     public function user(){

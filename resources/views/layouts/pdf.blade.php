@@ -1,20 +1,15 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="{{app()->getLocale()}}">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>FactuDent @yield('title')</title>
-
-    {{-- Styles --}}
-    @include('partials.styles')
     @stack('styles')
 </head>
 <body>
     <div id="app" class="pdf">
-        <img class="pdf-logo" src="{{ asset('images/factudent-logo.png') }}" alt="FactuDent Logo" width="112" height="28">
+        @if(auth()->user()->show_logo)
+            <img class="pdf-logo" src="{{auth()->user()->customLogoFilePath() ? auth()->user()->customLogoFilePath() : asset('images/factudent-logo.png')}}" width="112">
+        @endif
+
         <main class="container">
             <div class="content">
                 @yield('content')
@@ -22,10 +17,10 @@
         </main>
     </div>
 
-    <!-- Scripts -->
-    @include('partials.scripts')
-    @stack('scripts')
-    <!-- Include this after the sweet alert js file -->
-    @include('sweet::alert')
+    <footer>
+        @if(auth()->user()->show_advertising)
+            <p class="factudent-advertising">Esta factura ha sido generada a través de la aplicación de facturas FactuDent.</p>
+        @endif
+    </footer>
 </body>
 </html>

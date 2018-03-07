@@ -27,7 +27,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/app';
 
     /**
      * Create a new controller instance.
@@ -68,12 +68,19 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'surnames' => $data['surnames'],
             'email' => $data['email'],
-            'username' => null,
+            'nickname' => null,
+            'nif' => null,
+            'address' => null,
+            'locality' => null,
+            'province' => null,
+            'country' => null,
+            'post_code' => null,
+            'phone' => null,
             'password' => bcrypt($data['password']),
-            'api_key' => bcrypt($data['email']),
+            'api_key' => str_random(60),
             'remember_token' => str_random(10),
-            'role_id' => 3,
-            'active' => 0,
+            'role_id' => 4,
+            'active' => 1,
         ]);
     }
 }

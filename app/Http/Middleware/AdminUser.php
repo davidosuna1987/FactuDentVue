@@ -17,7 +17,7 @@ class AdminUser
     public function handle($request, Closure $next)
     {
         if(!Auth::user() or !Auth::user()->isAdmin() ){
-            return redirect()->route('welcome');
+            return redirect()->route('web');
         }
         return $next($request);
     }

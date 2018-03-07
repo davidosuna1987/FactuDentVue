@@ -13,6 +13,8 @@
     @stack('styles')
 </head>
 <body>
+    @include('partials.messages')
+
     <div id="app" class="auth">
         @include('partials.navbar.main')
         <main>

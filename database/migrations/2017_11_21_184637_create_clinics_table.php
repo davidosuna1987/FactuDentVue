@@ -25,13 +25,13 @@ class CreateClinicsTable extends Migration
             $table->string('locality');
             $table->string('province');
             $table->string('country');
-            $table->integer('post_code');
+            $table->string('post_code');
             $table->string('phone')->nullable();
             $table->string('fax')->nullable();
-            $table->integer('percentage')->unsigned();
+            $table->integer('percentage')->unsigned()->default(50);
             $table->boolean('active')->default(true); //Campo que se usará para mostrar o no la clínica en los listados
 
-            $table->foreign('user_id')->references('id')->on('users');
+            // $table->foreign('user_id')->references('id')->on('users');
 
             $table->timestamps();
             $table->softDeletes();

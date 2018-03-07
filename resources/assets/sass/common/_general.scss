@@ -1,15 +1,89 @@
+// iPhone Safari media bug
+*::-webkit-media-controls-panel {
+  display: none!important;
+  -webkit-appearance: none;
+}
+*::--webkit-media-controls-play-button {
+  display: none!important;
+  -webkit-appearance: none;
+}
+*::-webkit-media-controls-start-playback-button {
+  display: none!important;
+  -webkit-appearance: none;
+}
+
+//Selection styles
+::selection{
+    background-color: $turquoise;
+    color: #fff;
+}
+
+.strong{
+	font-family: $font-secondary;
+	font-size: 1.075rem;
+}
+
+#app.side-menu-opened{
+	&.app{
+		padding-left: 225px;
+	}
+
+	&.admin{
+		padding-left: 225px;
+	}
+
+	.side-menu{
+		transform: translateX(0);
+		overflow-y: auto;
+    z-index: 2;
+
+		.side-menu-icons{
+			right: 0;
+		}
+
+		.icon-backburger{
+			display: block;
+		}
+
+		.icon-menu{
+			display: none;
+		}
+	}
+
+	.navbar-start{
+		transform: translateY(-60px);
+	}
+
+	#footer{
+		padding-left: 225px;
+	}
+}
+
 //Login layout
 #app.auth{
 	padding-top: 52px;
 }
 
+body{
+	min-height: 100vh;
+
+	>#app{
+		min-height: calc(100vh);
+
+		&.app{
+			margin-bottom: 50px;
+		}
+	}
+}
+
 //APP layout
 #app.app{
+	transition: padding-left 350ms ease;
 	padding-top: 52px;
-	padding-left: 225px;
 
 	main.container{
 		width: 100%;
+		max-width: 1100px;
 		padding: 40px;
 	}
 }
@@ -23,20 +97,6 @@
 		top: 20px;
 		right: 60px;
 	}
-
-	// .column{
-	// 	&.is-half{
-	// 		width: 45%;
-
-	// 		&:first-child{
-	// 			float: left;
-	// 		}
-
-	// 		&:last-child{
-	// 			float: right;
-	// 		}
-	// 	}
-	// }
 }
 
 
@@ -49,4 +109,62 @@
 .add-invoice-line{
 	font-size: 0.875em;
 	cursor: pointer;
+}
+
+
+
+#logo-previewer-container{
+	display: flex;
+	align-items: flex-end;
+
+	.btn-set-default-logo{
+		display: none;
+
+		&.visible{
+			display: block;
+		}
+	}
+}
+
+#custom-logo-upload{
+	display: flex;
+	margin: 20px 0 15px;
+
+	.select-file-fake-container{
+		position: relative;
+
+		#custom-logo-file-input{
+			position: absolute;
+	    top: 0;
+	    left: 0;
+	    width: 100%;
+	    height: 100%;
+	    opacity: 0;
+	    cursor: pointer;
+	  }
+
+	}
+
+  .filename{
+  	border: solid 1px gainsboro;
+    border-left: none;
+    // border-top-right-radius: 999px;
+    // border-bottom-right-radius: 999px;
+    // height: 2.25em;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    font-size: .75rem
+  }
+}
+
+.select-file-fake-container{
+	// border-top-left-radius: 999px;
+ //  border-bottom-left-radius: 999px;
+  overflow: hidden;
+
+  .select-file-fake-button{
+  	padding-right: 12px;
+  	padding-left: 14px;
+  }
 }

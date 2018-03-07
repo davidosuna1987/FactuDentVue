@@ -1,0 +1,30 @@
+  .appear,
+  .appear-child{
+    transition: width 600ms cubic-bezier(.77, 0, .175, 1) 200ms,
+                opacity 600ms cubic-bezier(.77, 0, .175, 1) 200ms,
+                transform 600ms cubic-bezier(.77, 0, .175, 1) 200ms;
+
+    &.afade{opacity: 0;
+      &.visible{opacity: 1;}
+    }
+
+    &.aleft{transform: translateX(-50px);
+      &.visible{transform: translateX(0);}
+    }
+
+    &.aright{transform: translateX(50px);
+      &.visible{transform: translateX(0);}
+    }
+
+    &.atop{transform: translateY(-50px);
+      &.visible{transform: translateY(0);}
+    }
+
+    &.abottom{transform: translateY(50px);
+      &.visible{transform: translateY(0);}
+    }
+
+    &.awidth{width: 0;
+      &.visible{width: 100%;}
+    }
+  }

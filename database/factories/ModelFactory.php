@@ -20,12 +20,12 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'name' => $faker->firstName,
         'surnames' => $faker->lastName.' '.$faker->lastName,
         'email' => $faker_email,
-        'username' => $faker->unique()->userName,
+        'nickname' => $faker->unique()->userName,
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
-        'api_key' => bcrypt($faker_email),
-        'role_id' => $faker->numberBetween(3, 3),
-        'active' => true,
+        'api_key' => str_random(60),
+        'role_id' => $faker->numberBetween(3, 5),
+        'active' => 1,
     ];
 });
 
@@ -46,6 +46,6 @@ $factory->define(App\Clinic::class, function (Faker\Generator $faker) {
         'phone' => $faker->phoneNumber,
         'fax' => $faker->phoneNumber,
         'percentage' => 50,
-        'active' => true,
+        'active' => 1,
     ];
 });

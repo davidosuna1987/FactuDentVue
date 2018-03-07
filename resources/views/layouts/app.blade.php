@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="{{app()->getLocale()}}">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,7 +12,10 @@
     @include('partials.styles')
     @stack('styles')
 </head>
-<body>
+<body class="gradient-background">
+    @include('partials.loader')
+    @include('partials.messages')
+
     <div id="app" class="app">
         @include('partials.navbar.main')
         @include('partials.navbar.app')
@@ -22,6 +25,8 @@
             </div>
         </main>
     </div>
+
+    @include('partials.footer')
 
     <!-- Scripts -->
     @include('partials.scripts')

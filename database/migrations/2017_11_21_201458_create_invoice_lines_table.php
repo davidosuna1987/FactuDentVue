@@ -22,7 +22,7 @@ class CreateInvoiceLinesTable extends Migration
             $table->decimal('unit_price', 10, 2);
             $table->decimal('total', 10, 2);
 
-            $table->foreign('invoice_id')->references('id')->on('invoices');
+            // $table->foreign('invoice_id')->references('id')->on('invoices');
 
             $table->timestamps();
         });

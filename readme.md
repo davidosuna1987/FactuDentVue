@@ -49,3 +49,26 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+
+## TODO FUNCIONALIDAD
+
+- Mail activación nuevo usuario.
+
+## TODO MEJORAS
+
+
+- Index nuevo para admin.index view
+- Añadir apikey a las consultas api
+
+
+- Unificar form edit y form create de las clínicas
+- Cambiar switcher edit invoice por switcher settings y que no se envíe por ajax.
+- Cambiar tooltips antiguos por buefy tooltip
+- Cambiar input date invoices por datepicker buefy
+- Cambiar fecha inglés detalle línea invoices
+- Cambiar input type password por input password reveal buefy
+- Cambiar number_format(floor....) por función
+- Cambiar source de invoices y de botones de acción /factudent/public/app/invoicesapi en producción
+- Añadir logo, header y footer personalizado settings
+- Añadir detalles a invoices
+- invoicesapi get by id

@@ -4,6 +4,7 @@
 
 // Bulma
 @import "node_modules/bulma/bulma";
+@import '~bulma-badge';
 
 // Bulma Vue Modules
 @import "node_modules/buefy/src/scss/buefy";
@@ -17,5 +18,16 @@
 @import "components/navbar";
 @import "components/forms";
 @import "components/snackbar";
+@import "components/loader";
+@import "components/colpick";
+@import "components/switcher";
+@import "components/gradient-background";
+@import "components/appear";
+@import "components/floating-tooths";
+@import "components/particle-explode";
+@import "components/typography";
 
+@import "layouts/app";
 @import "layouts/auth";
+@import "layouts/web";
+@import "layouts/footer";

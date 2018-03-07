@@ -15,7 +15,11 @@ class User extends Authenticatable
     protected $table = 'users';
 
     protected $fillable = [
-        'name', 'surnames', 'email', 'username', 'password', 'api_key', 'role_id', 'active',
+        'name', 'surnames', 'email', 'nickname', 'nif', 'address',
+        'locality', 'province', 'country', 'post_code', 'login_provider',
+        'phone', 'password', 'api_key', 'role_id', 'active', 'default_percentage',
+        'default_retention', 'pdf_color', 'show_logo', 'show_advertising', 'custom_logo',
+        'custom_logo_filename'
     ];
 
     protected $hidden = [
@@ -43,20 +47,35 @@ class User extends Authenticatable
     }
 
     public function isActiveUser(){
-        return $this->role->slug == 'user' and $this->active;
         return $this->active;
     }
 
-    public function clinics(){
-        return $this->hasMany(Clinic::class)->orderBy('name', 'asc')->where('active', true)->get();
+    public function activeAndInactiveClinics(){
+        return $this->hasMany(Clinic::class);
     }
 
-    public function paginateClinics($clinics_per_page = 10){
-        return $this->hasMany(Clinic::class)->orderBy('name', 'asc')->where('active', true)->paginate($clinics_per_page);
+    public function clinics(){
+        return $this->hasMany(Clinic::class)->where('active', true);
     }
 
     public function invoices(){
-        $array_clinic_ids = $this->hasMany(Clinic::class)->orderBy('name', 'asc')->pluck('id')->toArray();
-        return Invoice::whereIn('clinic_id', $array_clinic_ids);
+        $array_clinics = $this->activeAndInactiveClinics()->pluck('id')->toArray();
+        return Invoice::whereIn('clinic_id', $array_clinics);
+        // return $this->hasManyThrough(Invoice::class, Clinic::class);
+    }
+
+    public function pendingInvoices()
+    {
+        return $this->invoices()->where('payment_date', null);
+    }
+
+    public function canCreateInvoices()
+    {
+        return $this->name and $this->email and $this->nif and $this->address and $this->locality and $this->province and $this->country and $this->post_code and $this->default_percentage;
+    }
+
+    public function customLogoFilePath()
+    {
+        return $this->custom_logo_filename ? asset('images/custom-logos/'.$this->id.'/'.$this->custom_logo_filename) : null;
     }
 }
